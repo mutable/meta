@@ -3,10 +3,8 @@
 let Promise = require('promise')
 let Hapi = require('hapi')
 let http = require('http')
-let Rimraf = require('rimraf')
+let fs = require('then-fs')
 let Routes = require('./routes')
-
-const rimraf = Promise.denodeify(Rimraf)
 
 class Api {
   constructor (port) {
@@ -40,7 +38,8 @@ class Api {
 
     if (!process.env.SOCKET) return this._goStart()
 
-    rimraf(process.env.SOCKET)
+    fs.unlink(process.env.SOCKET)
+    .catch(err => { if (err.code !== 'ENOENT') throw err })
     .then(this._serverListener.bind(this._server, process.env.SOCKET))
     .done(() => this._goStart())
   }

@@ -7,11 +7,11 @@
     "hapi": "^13.5.0",
     "joi": "^8.4.2",
     "promise": "^7.1.1",
-    "rimraf": "^2.5.3"
+    "then-fs": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start":"node app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Antonio 'pelle' Pellegrino <pellepelle3@gmail.com> (http://lsq.io)",
