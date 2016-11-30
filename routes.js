@@ -6,14 +6,14 @@ let routes = []
 routes.push({
   method: 'GET',
   path: '/v1/config',
-  config:{
+  config: {
     description: 'Config ',
     notes: 'Get config from services',
-    tags: ['api','config','meta'],
-    validate:{
-      query:{
-         index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a responds')
-      } 
+    tags: ['api', 'config', 'meta'],
+    validate: {
+      query: {
+        index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a responds')
+      }
     },
     handler: Meta.config
   }
@@ -22,10 +22,10 @@ routes.push({
 routes.push({
   method: 'GET',
   path: '/v1/whoami',
-  config:{
+  config: {
     description: 'WhoAmi ',
     notes: 'Find out who you are while in a service',
-    tags: ['api','whoami','meta'],
+    tags: ['api', 'whoami', 'meta'],
     handler: Meta.whoami
   }
 })
@@ -33,10 +33,10 @@ routes.push({
 routes.push({
   method: 'GET',
   path: '/v1/services',
-  config:{
+  config: {
     description: 'Services ',
     notes: 'List of services while in a service',
-    tags: ['api','services','meta'],
+    tags: ['api', 'services', 'meta'],
     handler: Meta.services
   }
 })
@@ -44,14 +44,14 @@ routes.push({
 routes.push({
   method: 'GET',
   path: '/v1/services/{service}',
-  config:{
+  config: {
     description: 'Service ',
     notes: 'List of a service\'s Healthly instances while in a service',
-    tags: ['api','service','meta'],
-    validate:{
-      query:{
-         index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a responds')
-      } 
+    tags: ['api', 'service', 'meta'],
+    validate: {
+      query: {
+        index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a responds')
+      }
     },
     handler: Meta.service
   }
