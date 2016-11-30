@@ -12,7 +12,7 @@ routes.push({
     tags: ['api', 'config', 'meta'],
     validate: {
       query: {
-        index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a responds')
+        index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a response')
       }
     },
     handler: Meta.config
@@ -50,7 +50,7 @@ routes.push({
     tags: ['api', 'service', 'meta'],
     validate: {
       query: {
-        index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a responds')
+        index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a response')
       }
     },
     handler: Meta.service
