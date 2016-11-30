@@ -1,5 +1,7 @@
 'use strict'
 
+let fs = require('then-fs')
+let Path = require('path')
 let Meta = {}
 
 Meta.whoami = (req, reply) => {
@@ -7,7 +9,12 @@ Meta.whoami = (req, reply) => {
 }
 
 Meta.config = (req, reply) => {
-  reply({data: 'blah'})
+  let config = fs.readFile(Path.join(__dirname, 'config.json'))
+    .then(JSON.parse, err => {
+      if (err.code !== 'ENOENT') throw err
+      return {}
+    })
+    .then(reply, reply)
 }
 
 Meta.services = (req, reply) => {
