@@ -1,59 +1,45 @@
-'use strict'
-let Joi = require('joi')
-let Meta = require('./api')
-let routes = []
+const Joi = require('joi');
+const Meta = require('./api');
+
+const routes = [];
+module.exports = routes;
 
 routes.push({
   method: 'GET',
   path: '/v1/config',
   config: {
-    description: 'Config ',
-    notes: 'Get config from services',
+    description: 'Get service config',
     tags: ['api', 'config', 'meta'],
-    validate: {
-      query: {
-        index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a response')
-      }
-    },
-    handler: Meta.config
-  }
-})
+    handler: Meta.config,
+  },
+});
 
 routes.push({
   method: 'GET',
   path: '/v1/whoami',
   config: {
-    description: 'WhoAmi ',
-    notes: 'Find out who you are while in a service',
+    description: 'Return info about the service calling this endpoint',
     tags: ['api', 'whoami', 'meta'],
-    handler: Meta.whoami
-  }
-})
+    handler: Meta.whoami,
+  },
+});
 
 routes.push({
   method: 'GET',
   path: '/v1/services',
   config: {
-    description: 'Services ',
-    notes: 'List of services while in a service',
+    description: 'List of services while in a service',
     tags: ['api', 'services', 'meta'],
-    handler: Meta.services
-  }
-})
+    handler: Meta.services,
+  },
+});
 
 routes.push({
   method: 'GET',
   path: '/v1/services/{service}',
   config: {
-    description: 'Service ',
-    notes: 'List of a service\'s Healthly instances while in a service',
+    description: 'List of a service\'s healthly instances',
     tags: ['api', 'service', 'meta'],
-    validate: {
-      query: {
-        index: Joi.number().integer().min(1).default(0).description('The last minIndexNum of a response')
-      }
-    },
-    handler: Meta.service
-  }
-})
-module.exports = routes
+    handler: Meta.service,
+  },
+});

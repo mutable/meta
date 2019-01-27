@@ -1,19 +1,18 @@
 {
   "name": "meta",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "hapi": "^13.5.0",
-    "joi": "^8.4.2",
-    "promise": "^7.1.1",
+    "hapi": "^18.0.0",
+    "joi": "^14.3.1",
+    "promise": "^8.0.2",
     "then-fs": "^2.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Antonio 'pelle' Pellegrino <pellepelle3@gmail.com> (http://lsq.io)",
+  "author": "Antonio 'pelle' Pellegrino <pellepelle3@gmail.com> (http://mutable.io)",
   "license": "ISC"
 }

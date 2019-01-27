@@ -1,14 +1,6 @@
 # System Files
-
 .DS_Store
 *.log
 
 # Dependencies
-
 node_modules
-Procfile
-.lsq
-.env
-
-# Configuration
-/config.json

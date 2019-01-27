@@ -1,28 +1,27 @@
-'use strict'
+const fs = require('then-fs');
+const Path = require('path');
 
-let fs = require('then-fs')
-let Path = require('path')
-let Meta = {}
+const Meta = {};
+module.exports = Meta;
 
-Meta.whoami = (req, reply) => {
-  reply({service: 'johnny five'})
+let example = {};
+
+fs.readFile(Path.join(__dirname, 'example.json'))
+  .then((data) => { example = JSON.parse(data) })
+  .catch(console.error);
+
+
+Meta.whoami = () => example.SERVICE_INFO;
+
+Meta.config = () => fs.readFile(Path.join(__dirname, '.config.json'))
+  .then(JSON.parse)
+  .catch(console.error)
+
+Meta.services = () => example.SERVICES;
+
+Meta.service = (req, h) => {
+  const { service } = req.params;
+  const containers = example.containers[service];
+  if (!containers) return h.response({ error: 'Service not found' }).code(404);
+  return containers[0];
 }
-
-Meta.config = (req, reply) => {
-  let config = fs.readFile(Path.join(__dirname, 'config.json'))
-    .then(JSON.parse, err => {
-      if (err.code !== 'ENOENT') throw err
-      return {}
-    })
-    .then(reply, reply)
-}
-
-Meta.services = (req, reply) => {
-  reply(['www', 'api', 'email'])
-}
-
-Meta.service = (req, reply) => {
-  reply(['127.0.0.1:8300', '127.0.0.1:8301', '127.0.0.1:8302'])
-}
-
-module.exports = Meta
